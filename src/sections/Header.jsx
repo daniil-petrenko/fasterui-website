@@ -4,12 +4,27 @@ import { navigation } from '@/constants';
 
 import { useMediaQuery } from 'react-responsive';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
+import { useEffect } from 'react';
 import clsx from 'clsx';
 
 import { useState } from 'react';
 
 const Header = () => {
+   const [hasScrolled, setHasScrolled] = useState(false);
    const [openNavigation, setOpenNavigation] = useState(false);
+
+   useEffect(() => {
+      const handleScroll = () => {
+         setHasScrolled(window.scrollY > 32);
+      }
+
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+         window.removeEventListener("scroll", handleScroll);
+      }
+
+   }, []);
 
    const toggleNavigation = () => {
       if (openNavigation) {
@@ -24,7 +39,7 @@ const Header = () => {
    const isMobile = useMediaQuery({ maxWidth: 479 });
 
    return (
-      <header className="fixed top-0 left-0 w-full z-200">
+      <header className={clsx("fixed top-0 left-0 w-full z-200 transition-colors duration-500", hasScrolled && "bg-[rgba(245,248,255,0.9)]")}>
          <div className="cnt flex justify-between items-center gap-8 py-4 max-md:gap-2 max-sm2:gap-0">
             <a href="" className="max-md:flex-1 max-md:pr-5">
                <img src={logo} alt="Logo" />

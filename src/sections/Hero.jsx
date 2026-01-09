@@ -2,9 +2,9 @@ import heroBg from '@assets/images/hero/heroBg.png';
 
 import Button from '@/components/Button';
 
-const Hero = () => {
+const Hero = ({ className }) => {
    return (
-      <section>
+      <section className={className}>
          <div className="cnt flex flex-col items-center relative pt-47 pb-38.75 max-xs:pb-20 max-sm:pb-30">
             <h1 className="font-bold text-[73px] leading-[100%] text-center mb-9 max-w-191 max-sm:text-[60px] max-xs:text-[40px]">
                Awesome UI Dark Template for Webflow Agency
