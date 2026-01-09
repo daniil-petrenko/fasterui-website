@@ -1,0 +1,21 @@
+@theme {
+   --font-main: 'Inter', sans-serif;
+   --font-secondary: 'Railway', sans-serif;
+
+   --text-base: 16px;
+
+   --mn-width: 20rem;
+   --mx-width: 77.875rem;
+
+   --color-main: #252432;
+   --color-gray: #8987a1;
+   --color-purple: #4e47ff;
+
+   --breakpoint-*: initial;
+   --breakpoint-xl: 90.5625rem;
+   --breakpoint-lg: 73.125rem;
+   --breakpoint-md: 61.99875rem;
+   --breakpoint-sm: 47.99875rem;
+   --breakpoint-sm2: 39.99875rem;
+   --breakpoint-xs: 29.99875rem;
+}
