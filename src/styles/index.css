@@ -11,7 +11,7 @@
       @apply h-full;
    }
    .wrapper {
-      @apply flex flex-col min-h-full overflow-hidden;
+      @apply flex flex-col min-h-screen overflow-hidden;
    }
    .wrapper > main {
       @apply flex-auto;

@@ -1,9 +1,9 @@
 import clsx from "clsx";
 
-const Button = ({ title, className }) => {
+const Button = ({ title, isPurple, className }) => {
    return (
       <>
-         <button className={clsx("cursor-pointer py-3 px-9 font-bold leading-[150%] text-center text-white font-secondary bg-purple transition-colors hover:bg-[#403ad6] rounded-[10px]", className)}>{title}</button>
+         <button className={clsx("cursor-pointer py-3 font-bold leading-[150%] text-center text-white font-secondary transition-colors rounded-[10px]", isPurple ? "bg-purple hover:bg-[#403ad6]" : "bg-main hover:bg-purple", className)}>{title}</button>
       </>
    )
 };

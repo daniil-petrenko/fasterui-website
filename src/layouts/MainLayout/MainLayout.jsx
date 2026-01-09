@@ -3,7 +3,7 @@ import Footer from '@sections/Footer';
 
 const MainLayout = ({ children }) => {
   return (
-    <div>
+    <div className='wrapper'>
       <Header />
          <main>{children}</main>
       <Footer />
