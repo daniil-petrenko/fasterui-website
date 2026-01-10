@@ -7,6 +7,10 @@ import icon6 from "@assets/images/what/icons/06.svg";
 import item1 from "@assets/images/what/item1.png";
 import item2 from "@assets/images/what/item2.jpg";
 
+import checkImage1 from "@assets/images/check/checkImage1.jpg";
+import checkImage2 from "@assets/images/check/checkImage2.jpg";
+import checkImage3 from "@assets/images/check/checkImage3.jpg";
+
 export {
    icon1,
    icon2,
@@ -15,5 +19,8 @@ export {
    icon5,
    icon6,
    item1,
-   item2
+   item2,
+   checkImage1,
+   checkImage2,
+   checkImage3
 }

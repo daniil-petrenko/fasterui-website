@@ -19,10 +19,28 @@
    .cnt {
       @apply max-w-[1246px] px-[15px] mx-auto;
    }
+   .title {
+      @apply font-secondary font-bold text-6xl max-sm:text-5xl max-xs:text-4xl leading-[120%];
+   }
+   .text {
+      @apply text-[14px] leading-[150%] text-gray;
+   }
 
    :before,
    :after,
    a {
       @apply inline-block;
+   }
+}
+
+#check .swiper {
+   overflow: visible;
+}
+
+@media (max-width: 47.99875rem) {
+   #check .swiper {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 32px;
    }
 }

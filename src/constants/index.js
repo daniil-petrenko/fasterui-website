@@ -1,4 +1,4 @@
-
+import { checkImage1, checkImage2, checkImage3 } from "@/assets/images";
 
 export const navigation = [
    {
@@ -22,3 +22,19 @@ export const navigation = [
       current: false,
    },
 ];
+
+export const checkSliderItems = [
+   {
+      id: "1",
+      imageUrl: checkImage1,
+   },
+   {
+      id: "2",
+      imageUrl: checkImage2,
+   },
+   {
+      id: "3",
+      imageUrl: checkImage3,
+   },
+]
+
