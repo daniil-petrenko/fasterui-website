@@ -1,16 +1,54 @@
 import heroBg from '@assets/images/hero/heroBg.png';
-
 import Button from '@/components/Button';
 
+import gsap from 'gsap';
+import SplitText from 'gsap/src/SplitText';
+import { useGSAP } from '@gsap/react';
+
+import { useRef } from 'react';
+
 const Hero = ({ className }) => {
+   const title = useRef();
+   const button = useRef();
+   const image = useRef();
+
+   useGSAP(() => {
+      document.fonts.ready.then(() => {
+         const titleSplit = new SplitText(title.current, { type: 'lines' });
+
+         gsap.from(titleSplit.lines, {
+            opacity: 0,
+            yPercent: 100,
+            duration: 1.8,
+            ease: 'expo.out',
+            stagger: 0.1,
+         });
+      });
+
+      gsap.from(button.current, {
+         yPercent: 100,
+         duration: 1,
+         opacity: 0,
+         delay: 0.7
+      })
+
+      gsap.from(image.current, {
+         opacity: 0,
+         duration: 1,
+         delay: 1,
+      })
+   }, []);
+
    return (
       <section className={className}>
          <div className="cnt flex flex-col items-center relative pt-47 pb-38.75 max-xs:pb-20 max-sm:pb-30">
-            <h1 className="font-bold text-[73px] leading-[100%] text-center mb-9 max-w-191 max-sm:text-[60px] max-xs:text-[40px]">
+            <h1 ref={title} className="font-bold text-[73px] leading-[100%] text-center mb-9 max-w-191 max-sm:text-[60px] max-xs:text-[40px]">
                Awesome UI Dark Template for Webflow Agency
             </h1>
-            <Button title="Get in Touch" isPurple={false} className="px-14.5" />
-            <div className="absolute top-0 left-12.5 -z-1 max-sm:top-[10%] max-sm2:top-[20%] max-xs:top-[30%] max-xs:left-0 max-xs:w-full">
+            <div ref={button}>
+               <Button title="Get in Touch" isPurple={false} className="px-14.5" />
+            </div>
+            <div ref={image} className="absolute top-0 left-12.5 -z-1 max-sm:top-[10%] max-sm2:top-[20%] max-xs:top-[30%] max-xs:left-0 max-xs:w-full">
                <img src={heroBg} alt="Image" />
             </div>
          </div>

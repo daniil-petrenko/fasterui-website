@@ -1,31 +1,70 @@
 import { useMediaQuery } from "react-responsive";
+import { useRef } from 'react';
 
 import Button from "@/components/Button"
 
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Pricing = ({ className }) => {
+   const title = useRef();
+   const text = useRef();
+
+   useGSAP(() => {
+      const pricingTimeline = gsap.timeline({
+         scrollTrigger: {
+            trigger: '#pricing',
+            start: '100px bottom',
+         },
+      });
+      
+      pricingTimeline
+         .from(title.current, {
+            yPercent: 100,
+            duration: 0.5,
+            opacity: 0,
+         })
+         .from(text.current, {
+            yPercent: 100,
+            duration: 0.5,
+            opacity: 0,
+         }, '-=0.3')
+         .from('.price-block', {
+            duration: 2,
+            opacity: 0,
+         }, '-=0.3')
+         .from('.schedule-block', {
+            duration: 2,
+            opacity: 0,
+         }, '-=1.5')
+   }, []);
+
    const isTablet = useMediaQuery({ maxWidth: 991 });
 
    return (
-      <section className={className}>
+      <section id="pricing" className={className}>
          <div className="cnt">
             <div className="grid grid-cols-[1fr_60%] gap-9 max-sm:gap-6 max-sm2:gap-4 pl-25.25 pr-18 max-md:flex max-md:flex-col max-md:px-0">
                <div className="flex flex-col h-full">        
                   <div>
-                     <h2 className="title mb-4">Pricing</h2>
-                     <div>
+                     <h2 ref={title} className="title mb-4">Pricing</h2>
+                     <div ref={text}>
                         <p className="text md:max-w-70.5">Take a look at some of our recent projects to see how we've helped businesses like yours succeed online.</p>
                      </div>
                   </div>
                   {
                      !isTablet && (
-                        <div className="pt-9.25 pb-7 px-6.5 bg-white rounded-[20px] mt-auto">
+                        <div className="schedule-block pt-9.25 pb-7 px-6.5 bg-white rounded-[20px] mt-auto">
                            <h3 className="font-secondary font-bold text-[34px] leading-[120%] mb-7.25">Let’s Schedule a Meeting</h3>
                            <Button title="Schedule Meeting" isPurple={true} className="w-full" />
                         </div>
                      )
                   }          
                </div>
-               <div className="px-5.5 pt-10.75 pb-6.25 max-sm2:pt-7 max-sm:pb-4 max-sm:px-5 bg-white rounded-[20px]">
+               <div className="price-block px-5.5 pt-10.75 pb-6.25 max-sm2:pt-7 max-sm:pb-4 max-sm:px-5 bg-white rounded-[20px]">
                   <div className="sm:pl-7">
                      <h3 className="font-bold text-3xl leading-[120%] font-secondary mb-7.75 max-xs:mb-4">Unlimited Services</h3>
                      <div className="mb-10.25 max-xs:mb-6">
@@ -83,7 +122,7 @@ const Pricing = ({ className }) => {
                </div>
                {
                   isTablet && (
-                     <div className="pt-9.25 pb-7 px-6.5 max-xs:pt-6 max-xs:pb-5 max-xs:px-4 bg-white rounded-[20px] mt-auto">
+                     <div className="schedule-block pt-9.25 pb-7 px-6.5 max-xs:pt-6 max-xs:pb-5 max-xs:px-4 bg-white rounded-[20px] mt-auto">
                         <h3 className="font-secondary font-bold text-[34px] max-xs:text-3xl leading-[120%] mb-7.25 max-xs:mb-6">Let’s Schedule a Meeting</h3>
                         <Button title="Schedule Meeting" isPurple={true} className="w-full" />
                      </div>

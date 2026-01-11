@@ -11,6 +11,15 @@ import {
 
 import WhatItem from "@/components/WhatItem";
 
+import gsap from 'gsap';
+import SplitText from 'gsap/src/SplitText';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+
 const items = [
    {
       id: "1",
@@ -19,7 +28,6 @@ const items = [
       text: "From concept to launch, we create stunning, user-centric websites that elevate your brand and engage your audience.",
       imageUrl: ""
    },
-   
    {
       id: "2",
       icon: icon2,
@@ -41,7 +49,6 @@ const items = [
       text: "From concept to launch, we create stunning, user-centric websites that elevate your brand and engage your audience.",
       imageUrl: item2,
    },
-   
    {
       id: "5",
       icon: icon5,
@@ -59,10 +66,31 @@ const items = [
 ]
 
 const What = ({ className }) => {
+   const title = useRef();
+
+   useGSAP(() => {
+      gsap.from(title.current, {
+         delay: 1.7,
+         yPercent: 100,
+         duration: 0.5,
+         opacity: 0,
+      });
+
+      gsap.from(document.querySelectorAll('.what-item'), {
+         scrollTrigger: {
+            trigger: "#what",
+            start: "30% bottom",
+         },
+         duration: 1,
+         opacity: 0,
+         stagger: 0.1,
+      });
+   }, []);
+
    return (
-      <section className={className}>
+      <section id="what" className={className}>
          <div className="cnt">
-            <h2 className="font-secondary font-bold text-6xl max-sm:text-5xl max-xs:text-4xl leading-[120%] mb-8">What We do</h2>
+            <h2 ref={title} className="font-secondary font-bold text-6xl max-sm:text-5xl max-xs:text-4xl leading-[120%] mb-8">What We do</h2>
             <div className="grid grid-cols-4 grid-rows-2 gap-8 grid-flow-dense max-lg:gap-6 max-xs:gap-4 max-md:grid-cols-3 max-sm:grid-cols-2 max-xs:flex max-xs:flex-col">
                <WhatItem icon={items[0].icon} title={items[0].title} text={items[0].text} image={items[0].imageUrl} className="" />
                <WhatItem icon={items[1].icon} title={items[1].title} text={items[1].text} image={items[1].imageUrl} className="" />

@@ -1,7 +1,6 @@
 import { navigation } from '@/constants';
 import logo from '@assets/images/logo.svg';
 import footerBg from '@assets/images/footer/footerBg.png';
-import footerBg2 from '@assets/images/footer/footerBg2.png';
 
 const Footer = ({ className }) => {
    return (

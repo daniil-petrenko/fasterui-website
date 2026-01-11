@@ -1,5 +1,5 @@
 import checkReviews from '@assets/images/check/checkReviews.png';
-import checkDecor from "@assets/images/check/checkDecor.png";
+import checkDecor from '@assets/images/check/checkDecor.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -8,10 +8,73 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { useRef } from 'react';
-
 import { checkSliderItems } from '@/constants';
 
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Check = ({ className }) => {
+   const title = useRef();
+   const text = useRef();
+
+   useGSAP(() => {
+      const checkHeadingTimeline = gsap.timeline({
+         scrollTrigger: {
+            trigger: '#check',
+            start: 'top bottom',
+         },
+      });
+
+      
+      gsap.from(title.current, {
+         scrollTrigger: {
+            trigger: '#check',
+            start: '100px bottom',
+         },
+         yPercent: 100,
+         duration: 0.5,
+         opacity: 0,
+      })
+      gsap.from(text.current, {
+         scrollTrigger: {
+            trigger: '#check',
+            start: '100px bottom',
+         },
+         yPercent: 100,
+         duration: 0.5,
+         opacity: 0,
+      }, '-=0.5');
+
+      gsap.from('#check .swiper-wrapper', {
+         scrollTrigger: {
+            trigger: '#check .swiper-wrapper',
+            start: 'top bottom',
+         },
+         xPercent: 50,
+         duration: 1,
+      });
+
+      gsap.from(prevRef.current, {
+         scrollTrigger: {
+            trigger: prevRef.current,
+            start: '200px bottom',
+         },
+         xPercent: 50,
+         duration: 1,
+      });
+      gsap.from(nextRef.current, {
+         scrollTrigger: {
+            trigger: nextRef.current,
+            start: '200px bottom',
+         },
+         xPercent: -50,
+         duration: 1,
+      });
+   }, []);
+
    const prevRef = useRef(null);
    const nextRef = useRef(null);
 
@@ -19,8 +82,10 @@ const Check = ({ className }) => {
       <section id="check" className={className}>
          <div className="cnt relative">
             <div className="flex flex-col items-center mb-14.25 max-sm:mb-11 max-xs:mb-8">
-               <h2 className="title mb-8 max-sm:mb-6">Check our Work</h2>
-               <div className="text text-center max-w-122.25">
+               <h2 ref={title} className="title mb-8 max-sm:mb-6">
+                  Check our Work
+               </h2>
+               <div ref={text} className="text text-center max-w-122.25">
                   <p>
                      Take a look at some of our recent projects to see how we've helped businesses
                      like yours succeed online.
@@ -118,17 +183,17 @@ const Check = ({ className }) => {
                   </div>
                </Swiper>
 
-               <div className='flex justify-center w-full mt-21.5 max-sm:mt-16 max-xs:mt-8'>        
-                  <div className='flex items-center gap-3.25 p-5.25 border border-[#e4eaf8] rounded-[22px] bg-white'>
+               <div className="flex justify-center w-full mt-21.5 max-sm:mt-16 max-xs:mt-8">
+                  <div className="flex items-center gap-3.25 p-5.25 border border-[#e4eaf8] rounded-[22px] bg-white">
                      <div>
                         <img src={checkReviews} alt="Image" />
                      </div>
-                     <div className=''>
+                     <div className="">
                         <div className="text-gray leading-[120%] mb-1">
                            <span className="font-medium text-main capitalize">5.0</span> Based on{' '}
                            <span className="font-medium text-main">145</span> Reviews
                         </div>
-                        <div className='flex items-center gap-1.5'>
+                        <div className="flex items-center gap-1.5">
                            <svg
                               width="13"
                               height="12"
@@ -194,8 +259,8 @@ const Check = ({ className }) => {
                   </div>
                </div>
             </div>
-            <div className='absolute top-0 left-[50%] -translate-x-[50%]'>
-               <img className='opacity-40' src={checkDecor} alt="Image" />
+            <div className="absolute top-0 left-[50%] -translate-x-[50%]">
+               <img className="opacity-40" src={checkDecor} alt="Image" />
             </div>
          </div>
       </section>
