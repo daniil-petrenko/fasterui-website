@@ -6,7 +6,7 @@ const MainLayout = ({ children }) => {
     <div className='wrapper'>
       <Header />
          <main>{children}</main>
-      <Footer />
+      <Footer className="pb-29.75 max-sm:20 max-xs:pb-14" />
     </div>
   );
 };

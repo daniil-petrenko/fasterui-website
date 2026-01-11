@@ -44,3 +44,9 @@
       gap: 32px;
    }
 }
+
+@layer utilities {
+   .faq-icon {
+      @apply before:absolute before:h-3.75 before:w-0.5 before:bg-main before:content-[''] after:absolute after:w-0.5 after:h-3.75 after:rotate-90 after:bg-main before:transition-all before:duration-500 after:content-[''];
+   }
+}
